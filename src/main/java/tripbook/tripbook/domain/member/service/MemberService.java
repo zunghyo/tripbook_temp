@@ -18,14 +18,8 @@ public class MemberService {
 
     @Transactional
     public Member signUp(final SignUpDto signupDto){
-        final Member member = Member.builder()
-                .email(signupDto.getEmail())
-                .pw(bCryptPasswordEncoder.encode(signupDto.getPw()))
-                .name(signupDto.getName())
-                .gender(signupDto.getGender())
-                .role(signupDto.getRole())
-                .build();
-
+        signupDto.setPw(bCryptPasswordEncoder.encode(signupDto.getPw()));
+        final Member member = signupDto.toEntity();
         return memberRepository.save(member);
     }
 

@@ -35,7 +35,7 @@ class MemberServiceTest {
 
     @Test
     @DisplayName("이메일 중복 체크 테스트")
-    void signUpFail(){
+    void checkEmailDuplicated(){
 
         final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         final SignUpDto signUpDto = createSignUpDto("test@gmail.com", "tester", "pwtest", Gender.GENDER_FEMALE, MemberRole.ROLE_USER);
@@ -48,12 +48,13 @@ class MemberServiceTest {
     }
 
     private SignUpDto createSignUpDto(String email, String name, String pw, Gender gender, MemberRole role) {
-        final SignUpDto signUpDto = new SignUpDto();
-        signUpDto.setEmail(email);
-        signUpDto.setName(name);
-        signUpDto.setPw(pw);
-        signUpDto.setGender(gender);
-        signUpDto.setRole(role);
+        final SignUpDto signUpDto = SignUpDto.builder()
+                .email(email)
+                .name(name)
+                .pw(pw)
+                .gender(gender)
+                .role(role)
+                .build();
         return signUpDto;
     }
 
