@@ -1,5 +1,6 @@
 package tripbook.tripbook.domain.member.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @Operation(summary = "회원가입", description = "회원가입 요청")
     @PostMapping(value = "/member/signUp")
     public ResponseEntity<String> signUp(@RequestBody final SignUpDto signUpDto){
 
